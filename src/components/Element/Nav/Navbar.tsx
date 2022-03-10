@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
 import { Row, Text, Button, Col } from '@nextui-org/react';
 import React from 'react';
+import { useAuth, useUser } from 'reactfire';
 import useDarkMode from 'use-dark-mode';
 
 interface NavbarProps {
@@ -8,6 +9,8 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ title }) => {
+  const auth = useAuth();
+  const user = useUser();
   const { value, toggle } = useDarkMode();
 
   return (
@@ -26,6 +29,15 @@ export const Navbar: React.FC<NavbarProps> = ({ title }) => {
           icon={<Icon icon={value ? 'heroicons-outline:sun' : 'heroicons-outline:moon'} />}
           onClick={toggle}
         />
+
+        {user && (
+          <Button
+            auto
+            light
+            icon={<Icon icon="heroicons-outline:logout" />}
+            onClick={async () => await auth.signOut()}
+          />
+        )}
       </Col>
     </Row>
   );
