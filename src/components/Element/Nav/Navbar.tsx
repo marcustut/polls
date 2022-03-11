@@ -21,7 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({ title }) => {
           auto
           light
           icon={<Icon icon="mdi:instagram" />}
-          onClick={() => window.open('https://www.instagram.com')}
+          onClick={() => window.open('https://www.instagram.com/suppuchongkia/')}
         />
         <Button
           auto

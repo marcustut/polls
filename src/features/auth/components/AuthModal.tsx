@@ -14,7 +14,7 @@ export const AuthModal: React.FC = () => {
         <Text id="auth-modal-title" size={18}>
           Login to{' '}
           <Text b size={18}>
-            Vote
+            Continue
           </Text>
         </Text>
       </Modal.Header>
