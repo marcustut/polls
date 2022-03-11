@@ -9,7 +9,7 @@ import manifest from './manifest.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  define: { global: {} }, // polyfill 'global' in browser
+  define: { global: 'globalThis' },
   plugins: [
     react(),
     pwa({
