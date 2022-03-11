@@ -59,44 +59,44 @@ export const Vote: React.FC<VoteProps> = ({ user }) => {
         Which bundle do you want to vote for?
       </Text>
 
-      <Container
-        css={{ height: status === 'loading' ? '80vh' : 'auto' }}
-        fluid
-        display="flex"
-        justify="center"
-        alignItems="center"
-        gap={0}
-      >
-        {status === 'loading' ? (
+      {status === 'loading' ? (
+        <Container
+          css={{ height: status === 'loading' ? '80vh' : 'auto' }}
+          fluid
+          display="flex"
+          justify="center"
+          alignItems="center"
+          gap={0}
+        >
           <Loading type="points" />
-        ) : (
-          <Grid.Container gap={2} direction="column">
-            {data.map(({ id, imageUrl, ...poll }) => (
-              <Grid key={id}>
-                <Card clickable cover onClick={() => handleCardClick({ id, imageUrl, ...poll })}>
-                  <Card.Header css={{ position: 'absolute', zIndex: 1, top: '$1' }}>
-                    <Col>
-                      <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
-                        {id}
-                      </Text>
-                      <Text h4 color="white">
-                        Stream the Acme event
-                      </Text>
-                    </Col>
-                  </Card.Header>
-                  <Card.Image
-                    src={imageUrl}
-                    height={340}
-                    width="100%"
-                    alt={`${id}'s image`}
-                    css={{ filter: 'brightness(80%)' }}
-                  />
-                </Card>
-              </Grid>
-            ))}
-          </Grid.Container>
-        )}
-      </Container>
+        </Container>
+      ) : (
+        <Grid.Container gap={2} direction="column">
+          {data.map(({ id, imageUrl, ...poll }) => (
+            <Grid key={id}>
+              <Card clickable cover onClick={() => handleCardClick({ id, imageUrl, ...poll })}>
+                <Card.Header css={{ position: 'absolute', zIndex: 1, top: '$1' }}>
+                  <Col>
+                    <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
+                      100 Ship Bundle
+                    </Text>
+                    <Text h4 color="white" transform="uppercase">
+                      {id}
+                    </Text>
+                  </Col>
+                </Card.Header>
+                <Card.Image
+                  src={imageUrl}
+                  height={340}
+                  width="100%"
+                  alt={`${id}'s image`}
+                  css={{ filter: 'brightness(80%)' }}
+                />
+              </Card>
+            </Grid>
+          ))}
+        </Grid.Container>
+      )}
 
       {confirmation && (
         <Modal
