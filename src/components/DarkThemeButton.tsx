@@ -1,8 +1,9 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Button, darkTheme } from "@modulz/design-system";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
 export const DarkThemeButton: FunctionComponent = () => {
-  const [theme, setTheme] = useState("theme-default");
+  const [theme, setTheme] = useState("dark-theme");
 
   useEffect(() => {
     document.body.classList.remove("theme-default", darkTheme);
@@ -16,7 +17,7 @@ export const DarkThemeButton: FunctionComponent = () => {
         setTheme(theme === "theme-default" ? darkTheme : "theme-default")
       }
     >
-      Toggle theme
+      {theme === "theme-default" ? <MoonIcon /> : <SunIcon />}
     </Button>
   );
 };

@@ -10,17 +10,22 @@
   "dependencies": {
     "@modulz/design-system": "^0.6.2",
     "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-icons": "^1.1.1",
     "@stitches/react": "^1.2.8",
     "firebase": "^9.8.1",
+    "firelordjs": "^1.3.3",
+    "lodash.isequal": "^4.5.0",
     "modern-normalize": "^1.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-helmet-async": "^1.3.0",
     "react-router-dom": "^6.3.0",
+    "react-toastify": "^9.0.1",
     "reactfire": "^4.2.1",
     "recharts": "^2.1.9"
   },
   "devDependencies": {
+    "@types/lodash.isequal": "^4.5.6",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
