@@ -70,33 +70,7 @@ export const View: FunctionComponent = () => {
   const [_teams, setTeams] = useState<CleanedTeam[]>([]);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(
-      query(teams.collection()),
-      async (querySnapshot) => {
-        const res = await getDoc(polls.doc(POLL_ID));
-        const poll = res.data();
-        if (!res.exists || !poll) {
-          toast.error("Unexpected Error, contact developer");
-          return;
-        }
-
-        setTeams(
-          (
-            querySnapshot.docs
-              .map((doc) =>
-                poll.teams.includes(doc.id)
-                  ? {
-                      name: doc.id,
-                      points: doc.data().points,
-                    }
-                  : null
-              )
-              .filter((t) => !!t) as CleanedTeam[]
-          ).sort((a, b) => a.name.localeCompare(b.name))
-        );
-      }
-    );
-    return () => unsubscribe();
+    // not implemented
   }, []);
 
   return (

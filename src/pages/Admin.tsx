@@ -47,17 +47,11 @@ import { LogOutButton } from "@/components/LogOutButton";
 import { Team } from "@/models/team";
 import { useFirelord } from "@/providers/FirelordProvider";
 
-const signIn = async (auth: Auth) => {
-  const provider = new GoogleAuthProvider();
-  await signInWithPopup(auth, provider);
-};
-
 type CleanedTeam = Team & { name: string };
 
 const POLL_ID = "yIK2lpYedYdNCMabzjDy";
 
 export const Admin: FunctionComponent = () => {
-  const auth = useAuth();
   const { data } = useSigninCheck();
   const { polls, teams } = useFirelord();
   const [_teams, setTeams] = useState<CleanedTeam[]>([]);
@@ -67,31 +61,7 @@ export const Admin: FunctionComponent = () => {
   const [newTeam, setNewTeam] = useState<CleanedTeam>({ name: "", points: 0 });
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(
-      query(teams.collection()),
-      async (querySnapshot) => {
-        const res = await getDoc(polls.doc(POLL_ID));
-        const poll = res.data();
-        if (!res.exists || !poll) {
-          toast.error("Unexpected Error, contact developer");
-          return;
-        }
-
-        setTeams(
-          querySnapshot.docs
-            .map((doc) =>
-              poll.teams.includes(doc.id)
-                ? {
-                    name: doc.id,
-                    points: doc.data().points,
-                  }
-                : null
-            )
-            .filter((t) => !!t) as CleanedTeam[]
-        );
-      }
-    );
-    return () => unsubscribe();
+    // not implemented
   }, []);
 
   const addTeam = useCallback(
@@ -173,7 +143,11 @@ export const Admin: FunctionComponent = () => {
             Sign in to continue.
           </Heading>
 
-          <Button size="3" css={{ width: "100%" }} onClick={() => signIn(auth)}>
+          <Button
+            size="3"
+            css={{ width: "100%" }}
+            onClick={() => toast.error("not implemented")}
+          >
             <Icon icon="logos:google-icon" style={{ marginRight: "8px" }} />{" "}
             Continue with Google
           </Button>
