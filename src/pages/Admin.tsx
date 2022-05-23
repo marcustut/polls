@@ -40,18 +40,29 @@ import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { useSigninCheck, useAuth } from "reactfire";
 import { Icon } from "@iconify/react";
-import { GoogleAuthProvider, signInWithPopup, Auth } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  Auth,
+  getAuth,
+} from "firebase/auth";
 
 import { DarkThemeButton } from "@/components/DarkThemeButton";
 import { LogOutButton } from "@/components/LogOutButton";
 import { Team } from "@/models/team";
 import { useFirelord } from "@/providers/FirelordProvider";
 
+const signIn = (auth: Auth) => {
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider);
+};
+
 type CleanedTeam = Team & { name: string };
 
-const POLL_ID = "yIK2lpYedYdNCMabzjDy";
+const POLL_ID = "First Poll";
 
 export const Admin: FunctionComponent = () => {
+  const auth = getAuth();
   const { data } = useSigninCheck();
   const { polls, teams } = useFirelord();
   const [_teams, setTeams] = useState<CleanedTeam[]>([]);
@@ -61,7 +72,11 @@ export const Admin: FunctionComponent = () => {
   const [newTeam, setNewTeam] = useState<CleanedTeam>({ name: "", points: 0 });
 
   useEffect(() => {
-    // not implemented
+    const unsubscribe = onSnapshot(query(teams.collection()), (result) => {
+      const teams = result.docs.map((doc) => ({ name: doc.id, ...doc.data() }));
+      setTeams(teams);
+    });
+    return () => unsubscribe();
   }, []);
 
   const addTeam = useCallback(
@@ -143,11 +158,7 @@ export const Admin: FunctionComponent = () => {
             Sign in to continue.
           </Heading>
 
-          <Button
-            size="3"
-            css={{ width: "100%" }}
-            onClick={() => toast.error("not implemented")}
-          >
+          <Button size="3" css={{ width: "100%" }} onClick={() => signIn(auth)}>
             <Icon icon="logos:google-icon" style={{ marginRight: "8px" }} />{" "}
             Continue with Google
           </Button>

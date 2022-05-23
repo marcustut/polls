@@ -70,7 +70,11 @@ export const View: FunctionComponent = () => {
   const [_teams, setTeams] = useState<CleanedTeam[]>([]);
 
   useEffect(() => {
-    // not implemented
+    const unsubscribe = onSnapshot(query(teams.collection()), (result) => {
+      const teams = result.docs.map((doc) => ({ name: doc.id, ...doc.data() }));
+      setTeams(teams);
+    });
+    return () => unsubscribe();
   }, []);
 
   return (

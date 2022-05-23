@@ -5,13 +5,12 @@ import { PollMeta } from "@/models/poll";
 import { TeamMeta } from "@/models/team";
 
 export const config = {
-  apiKey: "AIzaSyB5WgpscRFXvipUzrNf3Nm6sgswofTtxns",
-  authDomain: "polls-652dc.firebaseapp.com",
-  projectId: "polls-652dc",
-  storageBucket: "polls-652dc.appspot.com",
-  messagingSenderId: "1077819729519",
-  appId: "1:1077819729519:web:843fc1d4e141f425870f9a",
-  measurementId: "G-TN79L3EEBY",
+  apiKey: "AIzaSyAje8APkg5wJ-6tI0e8-uBEcmOrOVzU90w",
+  authDomain: "example-polls-d56fa.firebaseapp.com",
+  projectId: "example-polls-d56fa",
+  storageBucket: "example-polls-d56fa.appspot.com",
+  messagingSenderId: "316304950997",
+  appId: "1:316304950997:web:506188646eba1020bc845c",
 };
 
 const app = initializeApp(config);
